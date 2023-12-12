@@ -90,8 +90,41 @@ console.log('Financial analysis');
 console.log('-----------------------');
 console.log('Total Months: '+finances.length);
 let total=0;
-for(let data of finances){
+for(let data of finances){ 
   total+=data[1];
 }
 console.log('Total: '+ '$'+total);
-console.log('Avg: '+total/11);
+
+let totalChange = 0;
+for (let i = 1; i < finances.length; i++) {
+  let currentProfit = finances[i][1];
+  let previousProfit = finances[i - 1][1];
+  let change = currentProfit - previousProfit;
+  totalChange += change;
+}
+let averageChange = totalChange / (finances.length - 1);
+console.log('Average change:', averageChange.toFixed(2));
+
+let greatestIncrease = finances[1][1] - finances[0][1];
+let greatestDecrease = finances[1][1] - finances[0][1];
+let dateOfIncrease = finances[1][0]; 
+let dateOfDecrease = finances[1][0]; 
+
+for (let i = 1; i < finances.length - 1; i++) {
+  let currentProfit = finances[i][1];
+  let nextProfit = finances[i + 1][1];
+  let change = nextProfit - currentProfit;
+
+  if (change > greatestIncrease) {
+    greatestIncrease = change;
+    dateOfIncrease = finances[i + 1][0]; 
+  }
+
+  if (change < greatestDecrease) {
+    greatestDecrease = change;
+    dateOfDecrease = finances[i + 1][0]; 
+  }
+}
+
+console.log('Greatest Increase in Profits/Losses: ' + dateOfIncrease +' ($'+ greatestIncrease+')');
+console.log('Greatest Decrease in Profits/Losses: ' + dateOfDecrease +' ($'+ greatestDecrease+')');
