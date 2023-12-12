@@ -15,3 +15,5 @@ My task was to write JavaScript code that analyzes the records to calculate each
 -The greatest increase in profits (date and difference in the amounts) over the entire period.
 
 -The greatest decrease in losses (date and difference in the amounts) over the entire period.
+
+You can see the result here: https://natalie-0073.github.io/Console-Finances/
